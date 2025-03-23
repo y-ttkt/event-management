@@ -83,3 +83,19 @@ jobs:
 
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build and push nginx image
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          context: .
+          tags: ${{ secrets.AWS_ECR_ACCOUNT_URL }}/${{ vars.PROJECT }}/${{ needs.check.outputs.env_name }}/nginx:${{ github.sha }}
+          file: .docker/${{ needs.check.outputs.env_name }}/nginx/Dockerfile
+
+      - name: Build and push app image
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          context: .
+          tags: ${{ secrets.AWS_ECR_ACCOUNT_URL }}/${{ vars.PROJECT }}/${{ needs.check.outputs.env_name }}/app:${{ github.sha }}
+          file: .docker/${{ needs.check.outputs.env_name }}/app/Dockerfile
