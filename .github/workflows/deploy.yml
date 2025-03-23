@@ -49,6 +49,10 @@ jobs:
           role-session-name: GithubActions@${{ github.sha }}
           aws-region: ${{ vars.AWS_REGION }}
 
+      - name: get_caller_identity
+        shell: bash
+        run: aws sts get-caller-identity
+
       - name: load env variables
         shell: bash
         env:
