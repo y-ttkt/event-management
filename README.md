@@ -16,7 +16,7 @@ event-managementのAPIサーバーのリポジトリです。
 #### clone
 
 ```
-git clone git@github.com:yusuke-takatsu/event-management.git
+git clone git@github.com:y-ttkt/event-management.git
 ```
 
 #### install
